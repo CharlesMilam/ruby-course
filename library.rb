@@ -1,3 +1,4 @@
+require 'pry-byebug'
 
 class Book
   attr_reader :author, :title, :id
@@ -40,6 +41,7 @@ class Library
   def initialize(name)
     @name = name
     @books = []
+    @borrowers = []
   end
 
   def register_new_book(title, author)
@@ -49,8 +51,8 @@ class Library
   def check_out_book(book_id, borrower)
     book_to_check_out = @books.find {|book| book.id == book_id}
     book_to_check_out.check_out
+    @borrowers << {name: borrower.name, chk_outs: 1, books: [book_id]}
     book_to_check_out
-
   end
 
   def check_in_book(book)
@@ -60,5 +62,12 @@ class Library
   end
 
   def borrowed_books
+  end
+
+  def get_borrower(book_id)
+    #binding.pry
+    borrower = @borrowers.select {|borrower| borrower[books] == book_id}
+    # borrower = @borrowers.find {|borrow| borrow.books.id == book_id }
+    @borrowers.first
   end
 end
