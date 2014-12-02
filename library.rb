@@ -32,11 +32,14 @@ class Borrower
 end
 
 class Library
+  
   def initialize(name)
+    @name = name
     @books = []
   end
 
   def books
+    @books.length
   end
 
   def add_book(title, author)
