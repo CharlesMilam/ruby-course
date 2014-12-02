@@ -43,11 +43,14 @@ class Library
   end
 
   def register_new_book(title, author)
-    new_book = Book.new(title, author)
-    @books.push(new_book)
+    @books << Book.new(title, author)
   end
 
   def check_out_book(book_id, borrower)
+    book_to_check_out = @books.find {|book| book.id == book_id}
+    book_to_check_out.check_out
+    book_to_check_out
+
   end
 
   def check_in_book(book)
