@@ -9,6 +9,10 @@ class Book
     @id = id
     @status = status
   end
+
+  def check_out
+    @status = "checked_out"
+  end
 end
 
 class Borrower
