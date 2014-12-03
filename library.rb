@@ -41,7 +41,7 @@ class Library
   def initialize(name)
     @name = name
     @books = []
-    @borrowers = []
+    @borrowers = {}
   end
 
   def register_new_book(title, author)
@@ -50,9 +50,11 @@ class Library
 
   def check_out_book(book_id, borrower)
     book_to_check_out = @books.find {|book| book.id == book_id}
-    book_to_check_out.check_out
-    @borrowers << {name: borrower.name, chk_outs: 1, books: [book_id]}
-    book_to_check_out
+    if book_to_check_out.status != "checked_out"
+      book_to_check_out.check_out
+      @borrowers[book_id] = borrower.name
+      book_to_check_out
+    end
   end
 
   def check_in_book(book)
@@ -65,9 +67,6 @@ class Library
   end
 
   def get_borrower(book_id)
-    #binding.pry
-    borrower = @borrowers.select {|borrower| borrower[books] == book_id}
-    # borrower = @borrowers.find {|borrow| borrow.books.id == book_id }
-    @borrowers.first
+    borrower = @borrowers[book_id]
   end
 end
