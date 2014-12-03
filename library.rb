@@ -50,10 +50,13 @@ class Library
 
   def check_out_book(book_id, borrower)
     book_to_check_out = @books.find {|book| book.id == book_id}
-    if book_to_check_out.status != "checked_out"
+
+    if book_to_check_out.status != "checked_out" && check_borrower_status(borrower)
       book_to_check_out.check_out
       @borrowers[book_id] = borrower.name
-      book_to_check_out
+      return book_to_check_out
+    else
+      return nil
     end
   end
 
@@ -70,5 +73,21 @@ class Library
 
   def get_borrower(book_id)
     borrower = @borrowers[book_id]
+  end
+
+  def check_borrower_status(borrower)
+    book_count = 0
+
+    @borrowers.each do |borrow|
+      #binding.pry
+      if borrow[1] == borrower.name
+        book_count += 1
+      end
+    end
+    if book_count < 2
+      return true
+    else
+      return false
+    end
   end
 end
