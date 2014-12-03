@@ -42,10 +42,14 @@ class Library
     @name = name
     @books = []
     @borrowers = {}
+    @available = []
+    @borrowed = []
   end
 
   def register_new_book(title, author)
-    @books << Book.new(title, author)
+    new_book = Book.new(title, author)
+    @books << new_book
+    @available << new_book.id
   end
 
   def check_out_book(book_id, borrower)
@@ -54,6 +58,8 @@ class Library
     if book_to_check_out.status != "checked_out" && check_borrower_status(borrower)
       book_to_check_out.check_out
       @borrowers[book_id] = borrower.name
+      @available.delete book_id
+      @borrowed << book_id
       return book_to_check_out
     else
       return nil
@@ -62,10 +68,13 @@ class Library
 
   def check_in_book(book)
     @borrowers.delete book.id
+    @borrowed.delete book.id
+    @available << book.id
     book.check_in
   end
 
   def available_books
+    @available
   end
 
   def borrowed_books
