@@ -1,5 +1,6 @@
-.bundle
-vendor/bundle
 .DS_Store
+vendor/bundle
 .gems
-
+.rspec
+.gitignore
+.bundle
