@@ -23,3 +23,10 @@ describe "Exercise 1" do
     expect(result).to eq(0)
   end
 end
+
+describe "Exercise 2" do
+  it "returns the second element of an array" do
+    result = Exercises.ex2([0, 1, 2, 3])
+    expect(result).to eq(1)
+  end
+end
