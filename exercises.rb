@@ -37,7 +37,7 @@ module Exercises
   # Exercise 5
   #  - Iterates through an array and `puts` each element
   def self.ex5(array)
-    # TODO
+    array.each {|char| puts char}
   end
 
   # Exercise 6
@@ -110,4 +110,7 @@ module Extensions
   def self.extremes(array)
     # TODO
   end
+  p Exercises.ex5(["a"])
 end
+
+
