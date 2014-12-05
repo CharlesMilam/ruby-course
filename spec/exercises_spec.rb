@@ -53,3 +53,15 @@ describe "Exercise 5" do
     require_relative '../exercises.rb'
   end
 end
+
+describe "Exercise 6" do
+  it "Updates the last item in the array to 'panda'" do
+    result = Exercises.ex6(["a", "b", "c"])
+    expect(result).to eq("panda")
+  end
+
+  it "If the last item is already 'panda', update it to GODZILLA" do
+    result = Exercises.ex6(["a", "b", "panda"])
+    expect(result).to eq("GODZILLA")
+  end
+end
