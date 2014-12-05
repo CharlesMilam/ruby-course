@@ -49,8 +49,9 @@ describe "Exercise 5" do
   it "Iterates through an array and `puts` each element" do
     
     $stdout.should_receive(:puts).with("a")
+    $stdout.should_receive(:puts).with("b")
+    $stdout.should_receive(:puts).with("c")
     result = Exercises.ex5(["a", "b", "c"])
-    require_relative '../exercises.rb'
   end
 end
 
